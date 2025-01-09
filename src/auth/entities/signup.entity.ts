@@ -7,12 +7,6 @@ export class SignupEntity extends PartialType(SignUpDto) {
   id: number;
 
   @ApiProperty({
-    description: 'The email of the user',
-    example: 'alief@gmail.io',
-  })
-  email: string;
-
-  @ApiProperty({
     description: 'The username of the user',
     example: 'aliefdany',
   })

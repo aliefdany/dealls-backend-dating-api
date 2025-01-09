@@ -58,7 +58,7 @@ export class AuthController {
     },
   })
   @ApiOkResponse({ type: AuthEntity })
-  signUp(@Body() { email, username, password }: SignUpDto) {
-    return this.authService.signUp(email, username, password);
+  signUp(@Body() { username, password }: SignUpDto) {
+    return this.authService.signUp(username, password);
   }
 }

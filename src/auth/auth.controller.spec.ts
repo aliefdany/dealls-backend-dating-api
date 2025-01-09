@@ -41,7 +41,7 @@ describe('AuthController', () => {
       const expectedAuthEntity: AuthEntity = { accessToken: 'testAccessToken' };
       mockAuthService.signin.mockResolvedValue(expectedAuthEntity);
 
-      const result = await authController.login(signInDto);
+      const result = await authController.signIn(signInDto);
       expect(result).toEqual(expectedAuthEntity);
       expect(authService.signin).toHaveBeenCalledWith(
         signInDto.username,

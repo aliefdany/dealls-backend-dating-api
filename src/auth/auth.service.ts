@@ -40,11 +40,7 @@ export class AuthService {
     };
   }
 
-  async signUp(
-    email: string,
-    username: string,
-    password: string,
-  ): Promise<SignupEntity> {
+  async signUp(username: string, password: string): Promise<SignupEntity> {
     let user = await this.usersService.getUser(username);
 
     if (user) {
@@ -56,7 +52,6 @@ export class AuthService {
     const hash = await this.hashPassword(password);
 
     user = await this.usersService.createUser({
-      email,
       username,
       password: hash,
     });
