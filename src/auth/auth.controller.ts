@@ -9,7 +9,7 @@ import { SignInDto } from './dto/signin.auth.dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('login')
+  @Post('signin')
   @ApiBody({
     type: SignInDto,
     examples: {
