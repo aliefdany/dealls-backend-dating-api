@@ -6,6 +6,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { PrismaModule } from '../prisma/prisma.module';
 import { UsersModule } from '../users/users.module';
 import { JwtStrategy } from './strategy/jwt.strategy';
+import { UsersService } from 'src/users/users.service';
 
 export const jwtSecret = process.env.JWT_SECRET;
 
@@ -22,6 +23,6 @@ export const jwtSecret = process.env.JWT_SECRET;
     UsersModule,
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy],
+  providers: [AuthService, UsersService, JwtStrategy],
 })
 export class AuthModule {}
