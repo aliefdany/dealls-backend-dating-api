@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: dealls-dating-app-backend
+    image: node:20
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - '3000:3000'
+    command: npm run start:dev
+    environment:
+      NODE_ENV: development
+      POSTGRES_URL: postgresql://postgres:postgres@database:5432/dealls-dating-app_db?schema=public
+    init: true
+    entrypoint: sh -c "npm install -g @nestjs/cli && npm install && npm run start:dev"
+    depends_on:
+      - database
+
+  database:
+    container_name: dealls-dating-app-db
+    image: postgres:15
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: dealls-dating-app_db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
