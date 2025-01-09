@@ -8,8 +8,7 @@ import { PrismaService } from './../prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
 import { AuthEntity } from './entities/auth.entity';
 import { UsersService } from 'src/users/users.service';
-import { SignupEntity } from './entities/signup.entity';
-
+import { UserEntity } from 'src/users/entities/user.entity';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -40,7 +39,7 @@ export class AuthService {
     };
   }
 
-  async signUp(username: string, password: string): Promise<SignupEntity> {
+  async signUp(username: string, password: string): Promise<UserEntity> {
     let user = await this.usersService.getUser(username);
 
     if (user) {

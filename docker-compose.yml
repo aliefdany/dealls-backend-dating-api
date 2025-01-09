@@ -15,7 +15,7 @@ services:
       NODE_ENV: development
       POSTGRES_URL: postgresql://postgres:postgres@database:5432/dealls-dating-app_db?schema=public
     init: true
-    entrypoint: sh -c "npm install -g @nestjs/cli && npm install && npm run start:dev"
+    entrypoint: sh -c "npm install -g @nestjs/cli && npx prisma generate && npm install && npm run start:dev"
     depends_on:
       - database
 
