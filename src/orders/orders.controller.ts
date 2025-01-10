@@ -11,7 +11,7 @@ import {
 } from '@nestjs/swagger';
 import { OrderEntity } from './entities/order.entity';
 
-@Controller('orders')
+@Controller({ version: '1', path: 'orders' })
 @ApiTags('orders')
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
