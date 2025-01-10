@@ -7,9 +7,10 @@ import { CustomValidationPipe } from './custom-validation.pipe';
 import { APP_PIPE } from '@nestjs/core';
 import { AuthModule } from './auth/auth.module';
 import { SwipesModule } from './swipes/swipes.module';
+import { OrdersModule } from './orders/orders.module';
 
 @Module({
-  imports: [UsersModule, ProfilesModule, AuthModule, SwipesModule],
+  imports: [UsersModule, ProfilesModule, AuthModule, SwipesModule, OrdersModule],
   controllers: [AppController],
   providers: [
     AppService,
