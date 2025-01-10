@@ -49,8 +49,16 @@ export class ProfilesService {
         this.profileContext = new ProfileContext(
           new PremiumPackageStrategy(this.prisma, profileId, date),
         );
+        break;
       default:
         throw new BadRequestException('Package name is invalid');
     }
+  }
+
+  async updatePackage(userId: number, packageId: number) {
+    return await this.prisma.profile.update({
+      where: { user_id: userId },
+      data: { package_id: packageId },
+    });
   }
 }
