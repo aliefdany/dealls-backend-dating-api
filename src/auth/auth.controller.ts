@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { ApiBody, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthEntity } from './entities/auth.entity';
 import { SignInDto } from './dto/signin.auth.dto';
 import { SignUpDto } from './dto/signup.auth.dto';
@@ -11,6 +11,10 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('signin')
+  @ApiOperation({
+    summary: 'Sign in to the service',
+    description: 'User must signin to enjoy all features offered',
+  })
   @ApiBody({
     type: SignInDto,
     examples: {
@@ -36,6 +40,9 @@ export class AuthController {
   }
 
   @Post('signup')
+  @ApiOperation({
+    summary: 'Sign up to the service',
+  })
   @ApiBody({
     type: SignUpDto,
     examples: {
