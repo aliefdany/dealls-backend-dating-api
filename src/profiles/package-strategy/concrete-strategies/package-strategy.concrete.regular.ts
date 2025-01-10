@@ -6,12 +6,12 @@ import { Swipes } from '@prisma/client';
 export class RegularPackageStrategy implements ProfilePackageStrategy {
   private prisma: PrismaService;
   private profileId: number;
-  private date: string;
+  private date: Date;
 
   constructor(prisma: PrismaService, profileId: number, date: string) {
     this.prisma = prisma;
     this.profileId = profileId;
-    this.date = date;
+    this.date = new Date(date);
   }
 
   async viewProfile(): Promise<Swipes> {

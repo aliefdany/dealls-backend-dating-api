@@ -9,9 +9,11 @@ export class ProfilesController {
   @Get()
   @UseGuards(JwtAuthGuard)
   async getProfile(
-    @Request() req: { userId: number; profileId: number },
-    @Query() tz: string,
+    @Request() req: { user: { id: number } },
+    @Query('tz') tz: string,
   ) {
-    return await this.profilesService.getProfile(tz, req.profileId);
+    console.log({ user: req.user });
+
+    return await this.profilesService.getProfile(tz, req.user.id);
   }
 }

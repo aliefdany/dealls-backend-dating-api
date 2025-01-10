@@ -6,10 +6,9 @@ import { ProfilesModule } from './profiles/profiles.module';
 import { CustomValidationPipe } from './custom-validation.pipe';
 import { APP_PIPE } from '@nestjs/core';
 import { AuthModule } from './auth/auth.module';
-import { PackagesModule } from './packages/packages.module';
 
 @Module({
-  imports: [UsersModule, ProfilesModule, AuthModule, PackagesModule],
+  imports: [UsersModule, ProfilesModule, AuthModule],
   controllers: [AppController],
   providers: [
     AppService,

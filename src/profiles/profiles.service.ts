@@ -11,21 +11,21 @@ export class ProfilesService {
 
   constructor(private prisma: PrismaService) {}
 
-  async getProfile(tz: string, id: number): Promise<Swipes> {
+  async getProfile(tz: string, userId: number): Promise<Swipes> {
     const date = this.getCurrentLocalDate(tz);
 
-    const profile = await this.getProfileWithPackage(id);
+    const profile = await this.getProfileWithPackage(userId);
 
-    this.setProfilePackageStrategy(profile.package.name, id, date);
+    this.setProfilePackageStrategy(profile.package.name, profile.id, date);
 
     return this.profileContext.viewProfile();
   }
 
   async getProfileWithPackage(
-    profileId: number,
+    userId: number,
   ): Promise<Prisma.ProfileGetPayload<{ include: { package: true } }>> {
     return await this.prisma.profile.findUnique({
-      where: { id: profileId },
+      where: { user_id: userId },
       include: { package: true },
     });
   }

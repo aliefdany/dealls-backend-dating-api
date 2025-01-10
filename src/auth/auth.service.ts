@@ -20,16 +20,19 @@ export class AuthService {
   ) {}
 
   async signin(username: string, password: string): Promise<AuthEntity> {
-    const user = await this.prisma.user.findUnique({
-      where: { username },
-      include: { Profile: true },
+    const profile = await this.prisma.profile.findFirst({
+      where: { user: { username } },
+      include: { user: true },
     });
 
-    if (!user) {
+    if (!profile) {
       throw new NotFoundException(`No user found for username: ${username}`);
     }
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await bcrypt.compare(
+      password,
+      profile.user.password,
+    );
 
     if (!isPasswordValid) {
       throw new UnauthorizedException('Invalid password');
@@ -37,8 +40,8 @@ export class AuthService {
 
     return {
       accessToken: this.jwtService.sign({
-        userId: user.id,
-        profileId: user.Profile.id,
+        userId: profile.user.id,
+        profileId: profile.id,
       }),
     };
   }
@@ -59,7 +62,19 @@ export class AuthService {
       password: hash,
     });
 
-    // await this.prisma.profile.create({data: {user_id: user.id,}})
+    const subs = await this.prisma.package.findFirst({
+      where: { name: 'Regular' },
+    });
+
+    await this.prisma.profile.create({
+      data: {
+        user_id: user.id,
+        full_name: user.username,
+        package_id: subs.id,
+        dob: new Date(),
+        bio: 'test',
+      },
+    });
 
     return user;
   }
