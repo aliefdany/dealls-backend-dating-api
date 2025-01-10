@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { UpdateSwipeDto } from './dto/update-swipe.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 
@@ -13,6 +13,10 @@ export class SwipesService {
     const profile = await this.prismaService.profile.findUnique({
       where: { user_id: userId },
     });
+
+    if (!profile) {
+      throw new BadRequestException('User with the specified id not found');
+    }
 
     return this.prismaService.swipes.update({
       where: { id, swiper_id: profile.id },
