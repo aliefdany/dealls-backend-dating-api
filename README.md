@@ -1,12 +1,17 @@
-# Watch Catalog API
+# Dealls Backend Dating API
 
-Welcome to the **Watch Catalog API** — a RESTful API built with [NestJS](https://nestjs.com/) to manage and explore a luxurious collection of watches. This API provides endpoints for authentication, catalog management, and querying watch data with ease.
+Welcome to the heart of the dating world—the backend API designed to make connections smoother than a well-rehearsed pick-up line. Tailored for a swipe-based dating app like Tinder or Bumble, this robust and scalable system ensures your love life (and app performance) never runs out of steam.
+
+**Features That Make Cupid Jealous**:
+
+1. Secure sign-up and login capabilities that even your grandma could navigate (though let’s hope she won’t have to).
+2. Enable users to pass (left swipe) or like (right swipe) up to 10 profiles daily. Our smart profile caching ensures no awkward déjà vu moments with profiles popping up twice in a day—because nobody likes ghosts, not even digital ones.
 
 ---
 
 ## Table of Contents
 
-- [Watch Catalog API](#watch-catalog-api)
+- [Dealls Backend Dating API](#dealls-backend-dating-api)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
   - [Getting Started](#getting-started)
@@ -84,7 +89,7 @@ JWT_SECRET=your_jwt_secret
    docker compose up
    ```
 
-3. Apply database migrations (note: before executing this, change the host in POSTGRES_URL to 'localhost', and after migrations or seeding, change it back to 'database'):
+3. Apply database migrations (note: before executing this, change the host in DATABASE_URL to 'localhost', and after migrations or seeding, change it back to 'database'):
 
    ```bash
    npx prisma migrate dev
