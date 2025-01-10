@@ -42,7 +42,6 @@ export class AuthController {
       example1: {
         summary: "Authenticate an user with 'admin' role",
         value: {
-          email: 'alief@gmail.io',
           username: 'alief',
           password: 'random123',
         },
@@ -50,7 +49,6 @@ export class AuthController {
       example2: {
         summary: "Authenticate an user with 'user' role",
         value: {
-          email: 'dany@gmail.io',
           username: 'dany',
           password: 'random123',
         },
