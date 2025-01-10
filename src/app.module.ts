@@ -11,7 +11,14 @@ import { OrdersModule } from './orders/orders.module';
 import { PaymentsModule } from './payments/payments.module';
 
 @Module({
-  imports: [UsersModule, ProfilesModule, AuthModule, SwipesModule, OrdersModule, PaymentsModule],
+  imports: [
+    UsersModule,
+    ProfilesModule,
+    AuthModule,
+    SwipesModule,
+    OrdersModule,
+    PaymentsModule,
+  ],
   controllers: [AppController],
   providers: [
     AppService,
